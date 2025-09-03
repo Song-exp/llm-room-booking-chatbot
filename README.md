@@ -1,111 +1,37 @@
-# 프롬프톤 프로젝트
+# RAG 기반 교내 공간 대여 자동화 챗봇 시스템
 
-## 📋 프로젝트 개요
-경희대학교와 원티드가 주최하는 프롬프톤 공모전 프로젝트입니다.
-Google Sheets API를 활용한 강의실 관리 시스템을 구현했습니다.
+> 전화와 수기 장부에 의존하던 기존의 비효율적인 교내 공간 대여 프로세스를 자동화하고, 사용자와 관리자 모두의 편의성을 개선하기 위해 개발한 LLM 기반 챗봇 서비스입니다. (경희대학교 X 원티드 프롬프톤 출품작)
 
-## 🏗️ 프로젝트 구조
-```
-프롬프톤/
-├── 📁 api/                    # API 관련 파일들
-│   ├── index.py              # 메인 API 파일
-│   └── requirements.txt      # Python 의존성
-├── 📁 googlesheet_call/      # Google Sheets 연동 애플리케이션
-│   ├── app.py               # 메인 Flask 애플리케이션
-│   ├── app1.py              # 보조 애플리케이션
-│   ├── requirements.txt     # Python 의존성
-│   ├── templates/           # HTML 템플릿
-│   │   ├── chat.html       # 채팅 인터페이스
-│   │   ├── login.html      # 로그인 페이지
-│   │   └── images/         # 이미지 리소스
-│   └── README.md           # 하위 프로젝트 설명
-├── 📊 data/                  # 데이터 파일들
-│   ├── 강의실(월).csv      # 월요일 강의실 데이터
-│   ├── 강의실(화).csv      # 화요일 강의실 데이터
-│   ├── 강의실(수).csv      # 수요일 강의실 데이터
-│   └── 강의실(일).csv      # 일요일 강의실 데이터
-├── 🔧 scripts/               # 유틸리티 스크립트
-│   ├── app_sheet.py        # Google Sheets 연동 스크립트
-│   ├── excel_to_csv.ipynb  # Excel to CSV 변환 노트북
-│   └── load_sheet_api.ipynb # Google Sheets API 로드 노트북
-├── 🚀 deploy/                # 배포 관련 파일
-│   └── vercel.json         # Vercel 배포 설정
-├── .gitignore               # Git 무시 파일 목록
-└── README.md               # 프로젝트 메인 설명서
-```
 
-## ✨ 주요 기능
-- **Google Sheets API 연동**: 실시간 데이터 동기화
-- **강의실 정보 관리**: 요일별 강의실 데이터 관리
-- **웹 애플리케이션**: Flask 기반 사용자 인터페이스
-- **데이터 변환**: Excel ↔ CSV 변환 도구
+## 📌 1. 프로젝트 개요
 
-## 🛠️ 기술 스택
-- **Backend**: Python, Flask
-- **API**: Google Sheets API
-- **Frontend**: HTML, CSS, JavaScript
-- **Deployment**: Vercel
-- **Data Processing**: Jupyter Notebook, Pandas
+-   **문제 정의:** 기존의 수동 예약 방식은 예약 누락/중복이 잦고, 사용자가 예약 가능 여부를 확인하기 위해 행정실에 직접 방문해야 하는 등 비효율 문제가 있었습니다.
+-   **솔루션:** 사용자의 자연어 질문을 이해하고, 실시간 예약 현황을 파악하여 최적의 공간을 추천하고 예약 절차를 안내하는 자동화 챗봇을 개발했습니다.
+-   **기간:** 2024.09.23 - 2024.11.29
+-   **나의 역할:** 팀장으로서 프로젝트 기획, 시스템 설계, 프롬프트 엔지니어링을 주도했습니다.
 
-## 📥 설치 및 실행
 
-### 1. 환경 설정
-```bash
-# Python 3.7+ 설치 필요
-python --version
+## 💻 2. 기술 아키텍처
 
-# 가상환경 생성 (권장)
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # macOS/Linux
-```
+-   **AI/LLM:** `gpt-4o`
+-   **AI 기술:** `RAG (검색 증강 생성)`
+-   **데이터 연동:** `Google Sheets API`
+-   **핵심 역량:** `LLM 서비스 기획`, `프롬프트 엔지니어링`, `API 연동`
 
-### 2. 의존성 설치
-```bash
-# API 서버 의존성
-pip install -r api/requirements.txt
 
-# 웹 애플리케이션 의존성
-pip install -r googlesheet_call/requirements.txt
-```
+## 🚀 3. 데모 영상
 
-### 3. Google Cloud 설정
-1. Google Cloud Console에서 프로젝트 생성
-2. Google Sheets API 활성화
-3. 서비스 계정 키 생성 및 다운로드
-4. `db3clothbtitest-b2ab2e525277.json` 파일을 프로젝트 루트에 배치
+> [!VIDEO]
+> (https://file.notion.so/f/f/45794d6c-1c6a-42a2-9cb6-8f09d5165864/287359ac-832c-467e-9ff4-11d76e0a35e9/KakaoTalk_20250903_140859692.mp4?table=block&id=2632b7f0-8a84-80ce-ad1e-d97fab76618b&spaceId=45794d6c-1c6a-42a2-9cb6-8f09d5165864&expirationTimestamp=1756900800000&signature=X_oIBt_Dm7p4rGEHQ4eE13OZQULcDVjEwT6V4pfu9k0&downloadName=KakaoTalk_20250903_140859692.mp4)
 
-### 4. 애플리케이션 실행
-```bash
-# API 서버 실행
-cd api
-python index.py
+## ⚙️ 4. 주요 기능 및 구현 방식
 
-# 웹 애플리케이션 실행
-cd googlesheet_call
-python app.py
-```
+1.  **실시간 예약 현황 조회:** **`Google Sheets API`**를 통해 관리자가 실시간으로 업데이트하는 강의실 대여 시간표 데이터를 연동했습니다.
+2.  **최적 강의실 추천:** 사용자가 입력한 `날짜`, `인원`, `시간`에 맞는 강의실을 **`RAG`** 기술을 통해 실시간 데이터베이스에서 검색하고, 수용 인원에 가장 근접한 순서로 최대 3개의 후보를 추천합니다.
+3.  **예외 처리 및 대화 흐름 제어:** 대여 불가능한 시간대를 요청하거나, 후보 외의 강의실을 문의하는 등 다양한 사용자 요구에 대응할 수 있도록 정교한 **프롬프트 엔지니어링**을 적용했습니다.
 
-## 🔒 보안 주의사항
-- **중요**: `db3clothbtitest-b2ab2e525277.json` 파일은 Google Cloud 서비스 계정 키입니다
-- 이 파일은 절대 공개 저장소에 업로드하지 마세요
-- `.gitignore`에 포함되어 있지만, 추가 보안 조치를 권장합니다
 
-## 📝 사용법
-1. 웹 애플리케이션에 접속
-2. Google 계정으로 로그인
-3. 강의실 데이터 조회 및 관리
-4. API를 통한 데이터 접근
+## ✨ 5. 회고
 
-## 🤝 기여 방법
-1. 이 저장소를 Fork
-2. 새로운 브랜치 생성 (`git checkout -b feature/AmazingFeature`)
-3. 변경사항 커밋 (`git commit -m 'Add some AmazingFeature'`)
-4. 브랜치에 Push (`git push origin feature/AmazingFeature`)
-5. Pull Request 생성
-
-## 📄 라이선스
-이 프로젝트는 교육 목적으로 제작되었습니다.
-
-## 📞 문의
-프로젝트 관련 문의사항이 있으시면 이슈를 생성해주세요.
+-   **What I Learned:** 아이디어를 실제 작동하는 서비스로 구현하는 풀스택 개발의 즐거움을 느꼈습니다. 특히 RAG와 외부 API를 연동하여 LLM의 한계(최신 정보 부재)를 극복하는 실용적인 방법을 체득했습니다.
+-   **Outcome:** 챗봇 도입을 통해 기존의 번거로운 예약 절차를 간소화하여 **사용자 만족도를 높이고, 관리자의 수기 업무 부담을 80% 이상 줄일 수 있음을 증명**했습니다.
